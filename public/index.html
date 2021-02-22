@@ -11,6 +11,8 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
       <script>
         var page_progress = 0
         var sum = 0
@@ -23,20 +25,18 @@
             setTimeout(() => {
               if (page_progress != 1) {
                 page_progress = ((++sum) / links.length).toFixed(2)
+                console.log(page_progress)
               }
-            },60)
-
+            }, 60)
           };
         }
         document.onreadystatechange = e => {
           console.log(document.readyState)
-
           if (document.readyState === 'complete') {
-              page_progress = 1
+            page_progress = 1
           }
         }
       </script>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
+

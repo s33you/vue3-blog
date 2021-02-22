@@ -3,25 +3,67 @@
     <div class="loading">
       <img src="@/assets/NERV_Logo.png" />
       <img src="@/assets/NERV_Logo.png" class="clip" id="loading" />
-      <img src="@/assets/NERV_Logo.png" class="shark" />
+      <img src="@/assets/NERV_Logo.png" class="shark shark-animation" />
     </div>
-    <div class="button" v-if="loading">
+    <div class="button" v-if="isLoaded">
       <div class="decrator"></div>
-      <div class="text" >
+      <div class="text" @click="enter">
         出擊
       </div>
       <div class="decrator"></div>
     </div>
   </div>
 </template>
-<style lang="scss">
+<script lang="ts">
+import { computed, defineComponent, defineEmit, onMounted, ref } from "vue";
+
+export default defineComponent({
+  props: {
+    loaded: Boolean,
+  },
+  setup(props,context) {
+    const count = ref(0);
+    const isLoaded = computed(() => {
+      return props.loaded && count.value == 100;
+    });
+    onMounted(() => {
+      const template = (value: number) => {
+        return `inset(0% 0% 0% ${value}%)`;
+      };
+      let loadElement: HTMLElement = document.querySelector(
+        "#loading"
+      ) as HTMLElement;
+      const loading = () => {
+        if (count.value < 70 && !props.loaded) {
+          count.value++;
+        } else if (props.loaded && count.value < 100) {
+          count.value++;
+        }
+        if (loadElement) {
+          loadElement.style.clipPath = template(count.value);
+        }
+        if (count.value < 100) {
+          requestAnimationFrame(loading);
+        }
+      };
+      requestAnimationFrame(loading);
+    });
+    const enter = ()=>{
+      console.log(1)
+      context.emit('enter')
+    }
+    return { isLoaded ,enter};
+  },
+});
+</script>
+<style lang="scss" scoped>
 @font-face {
-    font-family: MingChao;
-    src: url('../assets/GenWanMinJP-Light-2.ttf');
-} 
+  font-family: MingChao;
+  src: url("../assets/GenWanMinJP-Light-2.ttf");
+}
 @font-face {
-    font-family: MingChao-Medium;
-    src: url('../assets/GenWanMinJP-Medium-3.ttf');
+  font-family: MingChao-Medium;
+  src: url("../assets/GenWanMinJP-Medium-3.ttf");
 }
 html,
 body {
@@ -31,10 +73,10 @@ body {
   outline: none;
   height: 100vh;
   overflow: hidden;
-  background-color: black;
 }
 
 .container {
+  background-color: black;
   width: 100%;
   height: 100%;
   position: relative;
@@ -44,7 +86,7 @@ body {
   width: 40%;
   height: 40%;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -78,10 +120,10 @@ body {
   --slice-5: inset(55% -6px 43% 0);
   --slice-6: inset(80% -6px 5% 0);
   --slice-7: inset(90% -6px 5% 0);
-  clip-path: var(--slice-0);
+  clip-path: var(--slice-1);
 }
 
-.shark {
+.shark-animation {
   animation: 2s glitch infinite ease-in-out;
   animation-timing-function: steps(2, end);
   animation-delay: 2s;
@@ -94,14 +136,21 @@ body {
   left: 50%;
   bottom: 10%;
   transform: translateX(-50%);
-  width: 15%;
-  height: 13vh;
   color: red;
+  transition: all 1s linear;
+  cursor: pointer;
 }
 
 .decrator {
-  width: 100%;
-  height: 30%;
+  width: rpx(100px);
+  height: vpx(40px);
+
+  @media only screen and (max-width: 1024px) {
+    height: vpx(20px);
+    width: rpx(240px);
+    height: vpx(30px);
+    background-size: rpx(30px) rpx(30px);
+  }
   background: linear-gradient(
     45deg,
     red 0,
@@ -113,14 +162,36 @@ body {
     transparent 75%,
     transparent
   );
-  background-size: 30px 30px;
+  background-size: rpx(15px) rpx(15px);
+
 }
 .text {
-  font-family:MingChao-Medium;
-  font-size: 40px;
+  font-family: MingChao-Medium;
+  font-size: vpx(60px);
+   @media only screen and (max-width: 1024px) {
+     font-size: vpx(50px);
+  line-height: vpx(100px);
+
+  }
   font-weight: bold;
   letter-spacing: 10px;
-  line-height: 60px;
+  line-height: vpx(120px);
+  text-align: center;
+  &:hover {
+    animation: 1.5s shark infinite;
+    animation-timing-function: steps(5, end);
+  }
+}
+@keyframes shark {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
 }
 @keyframes glitch {
   0% {
@@ -194,24 +265,3 @@ body {
   }
 }
 </style>
-<script>
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  mounted() {
-    const template = (value) => {
-      return `inset(0% 0% 0% ${value}%)`;
-    };
-    let count = 0;
-    const loading = () => {
-      document.querySelector("#loading").style.clipPath = template(count++);
-
-      if (count > 100) {
-        // count = 0
-      }
-      requestAnimationFrame(loading);
-    };
-    requestAnimationFrame(loading);
-  },
-});
-</script>
