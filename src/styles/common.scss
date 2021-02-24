@@ -1,25 +1,21 @@
-@function rpx($value, $design-width:750px) {
-    @if type-of($value)=='number'and unit($value)=='px' {
-        @return $value * 100vw / $design-width
-    }
-
-    @else {
-        @return $value
-    }
-
-};
-@function vpx($value, $design-width:1334px) {
-    @if type-of($value)=='number'and unit($value)=='px' {
-        @return $value * 100vh / $design-width
-    }
-    @else {
-        @return $value
-    }
-
-};
-@mixin container {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+@function rpx($value, $design-width: 750px) {
+  @if type-of($value) == "number" and unit($value) == "px" {
+    @return $value * 100vw / $design-width;
+  } @else {
+    @return $value;
+  }
 }
+@function vpx($value, $design-width: 1334px) {
+  @if type-of($value) == "number" and unit($value) == "px" {
+    @return $value * 100vh / $design-width;
+  } @else {
+    @return $value;
+  }
+}
+@mixin container {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+@import './reset.scss';

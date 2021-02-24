@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="loading">
-      <img src="@/assets/NERV_Logo.png" />
-      <img src="@/assets/NERV_Logo.png" class="clip" id="loading" />
-      <img src="@/assets/NERV_Logo.png" class="shark shark-animation" />
+      <img src="@/assets/images/NERV_Logo.png" />
+      <img src="@/assets/images/NERV_Logo.png" class="clip" id="loading" />
+      <img src="@/assets/images/NERV_Logo.png" class="shark shark-animation" />
     </div>
     <div class="button" v-if="isLoaded">
       <div class="decrator"></div>
@@ -15,7 +15,7 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, defineEmit, onMounted, ref } from "vue";
+import { computed, defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   props: {
@@ -57,14 +57,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@font-face {
-  font-family: MingChao;
-  src: url("../assets/GenWanMinJP-Light-2.ttf");
-}
-@font-face {
-  font-family: MingChao-Medium;
-  src: url("../assets/GenWanMinJP-Medium-3.ttf");
-}
+
 html,
 body {
   width: 100vw;
