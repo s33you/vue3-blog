@@ -3,6 +3,8 @@
   <router-view v-if="loaded && entered" />
 </template>
 <script lang="ts">
+import '@/styles/w95.css';
+import '@/styles/fonts.css';
 import { defineComponent, onMounted, ref, watch } from "vue";
 import loading from "@/components/loading.vue";
 export default defineComponent({
@@ -10,7 +12,6 @@ export default defineComponent({
     loading,
   },
   setup() {
-
     let progress = ref(0);
     let entered = ref(false);
     let loaded = ref(false);
@@ -21,7 +22,6 @@ export default defineComponent({
     let enter = () => {
       entered.value = true;
     };
-    
 
     watch(progress, (value) => {
       if (value == 1 && !loaded.value) {
