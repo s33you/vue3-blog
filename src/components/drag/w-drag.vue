@@ -12,12 +12,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { getPointStyle,handlePointMouseDown} from "./utils";
+import { getPointStyle,handlePointMouseDown,Style} from "./utils";
 const pointList: Array<string> = [ "ne", "se", "sw", "nw"];
-interface Style {
-  width: number;
-  height: number;
-}
+
 export default defineComponent({
   name: "w-drag",
   props: {
@@ -25,7 +22,11 @@ export default defineComponent({
       type: Object as PropType<Style>,
       required: true,
     },
+    minBox:{
+      type:Object as PropType<Style>
+    },
   },
+  inject:['container'],
   setup(props, context) {
     return { getPointStyle, pointList,handlePointMouseDown};
   },

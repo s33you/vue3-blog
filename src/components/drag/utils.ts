@@ -1,6 +1,6 @@
-import { onMounted } from "vue";
 
-interface Prop {
+import {limitInArea} from '@/utils/tool'
+export interface Prop {
     [propName: string]: any
     defaultStyle: {
         width: number,
@@ -9,6 +9,11 @@ interface Prop {
         left: number,
         [propName: string]: any
     }
+    minBox: Style
+}
+export interface Style {
+    width: number;
+    height: number;
 }
 export function getPointStyle<T extends Prop>(props: T, point: string) {
     const { width, height } = props.defaultStyle;
@@ -46,7 +51,6 @@ export function getPointStyle<T extends Prop>(props: T, point: string) {
     return style;
 }
 export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEvent) {
-
     let startX = downEvent.clientX;
     let startY = downEvent.clientY;
     let ele = this.defaultStyle;
@@ -54,8 +58,10 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
     let width = ele["width"];
     let top = ele["top"];
     let left = ele["left"];
+    //长宽比例
     let scale = width / height;
-
+    let { container,minBox} = this
+    console.log(container)
     let move = (moveEvent: MouseEvent) => {
         moveEvent.stopPropagation()
         moveEvent.preventDefault()
@@ -71,6 +77,17 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
         let hasW = /w/.test(mark);
         let hasE = /e/.test(mark);
         /**
+         * 判断是否大于container
+         */
+        if (container) {
+            if (top < 0 || top + ele.height > container.height) {
+                top = top < 0 ? 0 : container.height - ele.height;
+            }
+            if (left < 0 || left + ele.width > container.width) {
+                left = left < 0 ? 0 : container.width - ele.width;
+            }
+        }
+        /**
          * 对角等比缩放
          */
         // if (proportion) {
@@ -84,12 +101,17 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
 
         let newHeight = +height + (hasN ? -disY : hasS ? disY : 0);
         let newWidth = +width + (hasW ? -disX : hasE ? disX : 0);
-        ele["height"] = newHeight > 0 ? newHeight : 0;
-        ele["width"] = newWidth > 0 ? newWidth : 0;
+        /**
+         * 是否大于最小box-size
+         */
+        ele["height"] = limitInArea(minBox.height,container.height,newHeight)
+        ele["width"] = limitInArea(minBox.width,container.width,newWidth)
         ele["left"] = + left + (hasW ? disX : 0);
         ele["top"] = + top + (hasN ? disY : 0);
     };
     let up = () => {
+        console.log(ele)
+
         document.removeEventListener("mousemove", move);
         document.removeEventListener("mouseup", up);
         this.$emit('resize')

@@ -95,23 +95,21 @@
     <!-- Dialog -->
     <div class="section-doc">
       <div class="title">Dialog</div>
-      <div class="content card-body">
-        <w-drag :defaultStyle = "defaultStyle" :style="getStyle(defaultStyle)">
-       
-          <div class="inner_block" >
-            火火恍恍惚惚
-          </div>
-            
-        </w-drag>
+      <div class="content card-body" :style="getStyle(container)">
+        <w-dialog
+          :defaultStyle="defaultStyle"
+          :isHidden="isHidden"
+          @hidden="hidden"
+        ></w-dialog>
       </div>
     </div>
     <!-- Dialog -->
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted} from "vue";
+import { defineComponent, onMounted } from "vue";
 import { getComponents } from "@/utils/tool";
-import {getStyle} from "@/utils/style";
+import { getStyle } from "@/utils/style";
 const components: any = getComponents();
 const Doc = defineComponent({
   components: {
@@ -124,14 +122,29 @@ const Doc = defineComponent({
     });
     return {getStyle}
   },
+  provide(){
+    return {
+      container:this.container
+    }
+  },
+  methods: {
+    hidden() {
+      this.isHidden = true;
+    },
+  },
   data() {
     return {
       checked: true,
-      defaultStyle:{
-        width:100,
-        top:10,
-        left:10,
-        height:200
+      defaultStyle: {
+        width: 200,
+        top: 50,
+        left: 50,
+        height: 100,
+      },
+      isHidden: false,
+      container:{
+        width:400,
+        height:400
       }
     };
   },
@@ -160,17 +173,17 @@ code {
       font-size: rpx(18px);
     }
     .content {
+      position: relative;
       background-color: rgb(219, 216, 216);
-      padding: rpx(20px);
     }
     .tips {
       margin: 0 rpx(5px);
+      font-size: rpx(10px);
     }
 
     .doc-block {
       line-height: rpx(30px);
     }
   }
- 
 }
 </style>

@@ -47,3 +47,22 @@ export function exChangeAtrribe(key: string, props: Readonly<any>, attrs: any, t
         return "";
     })
 }
+export function Throttle(this:any,fn: Function, wait: number) {
+    let last = 0
+    return (...args: any) => {
+        let now = + new Date()
+        if(now-last >wait){
+            last = now 
+            fn.apply(this,args)
+        }
+    }
+}
+export function limitInArea(min:number,max:number,value:number){
+    if(value>max){
+        return max
+    }
+    if(value<min){
+        return min
+    }
+    return value
+}
