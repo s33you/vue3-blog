@@ -1,7 +1,7 @@
 <template>
-  <div class="doc">
+  <div class="doc" id="doc">
+    <!-- Button -->
     <div class="section-doc">
-      <!-- Button -->
       <div class="title">
         Buttons
       </div>
@@ -92,12 +92,26 @@
       </div>
     </div>
     <!-- Cards -->
+    <!-- Dialog -->
+    <div class="section-doc">
+      <div class="title">Dialog</div>
+      <div class="content card-body">
+        <w-drag :defaultStyle = "defaultStyle" :style="getStyle(defaultStyle)">
+       
+          <div class="inner_block" >
+            火火恍恍惚惚
+          </div>
+            
+        </w-drag>
+      </div>
+    </div>
+    <!-- Dialog -->
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, resolveComponent } from "vue";
+import { defineComponent, onMounted} from "vue";
 import { getComponents } from "@/utils/tool";
-
+import {getStyle} from "@/utils/style";
 const components: any = getComponents();
 const Doc = defineComponent({
   components: {
@@ -108,10 +122,17 @@ const Doc = defineComponent({
     onMounted(() => {
       // FullScreen()
     });
+    return {getStyle}
   },
   data() {
     return {
       checked: true,
+      defaultStyle:{
+        width:100,
+        top:10,
+        left:10,
+        height:200
+      }
     };
   },
 });
@@ -129,6 +150,7 @@ code {
   font-family: Pxiel;
   text-align: left;
   .section-doc {
+    position: relative;
     line-height: rpx(20px);
     margin: 0 auto;
     padding: 30px;
@@ -149,5 +171,6 @@ code {
       line-height: rpx(30px);
     }
   }
+ 
 }
 </style>

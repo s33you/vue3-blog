@@ -19,7 +19,7 @@ export function FullScreen() {
  */
 export function getComponents() {
     const modules: any = {}
-    const components = require.context('@/components/', false, /w-.*\.vue/)
+    const components = require.context('@/components/', true, /w-.*\.vue/)
     components.keys()
         .forEach((key: string) => {
             let name = path.basename(key).replace(".vue", "")
@@ -33,7 +33,7 @@ export function getComponents() {
  * @param key 键值
  * @param props props
  * @param attrs 非props属性
- * @param transTable 对照表
+ * @param transTable 对照表，用于值转换
  */
 export function exChangeAtrribe(key: string, props: Readonly<any>, attrs: any, transTable?: any) {
     return computed(() => {
