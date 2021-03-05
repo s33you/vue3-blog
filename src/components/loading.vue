@@ -33,6 +33,9 @@ export default defineComponent({
       let loadElement: HTMLElement = document.querySelector(
         "#loading"
       ) as HTMLElement;
+      /**
+       * 动画函数
+       */
       const loading = () => {
         if (count.value < 70 && !props.loaded) {
           count.value++;
@@ -49,7 +52,6 @@ export default defineComponent({
       requestAnimationFrame(loading);
     });
     const enter = ()=>{
-      console.log(1)
       context.emit('enter')
     }
     return { isLoaded ,enter};

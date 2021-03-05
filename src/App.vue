@@ -5,40 +5,18 @@
 <script lang="ts">
 import '@/styles/w95.css';
 import '@/styles/fonts.css';
-import { defineComponent, onMounted, ref, watch } from "vue";
+import { defineComponent} from "vue";
+import useLoading from '@/hooks/components/useLoading'
 import loading from "@/components/loading.vue";
 export default defineComponent({
   components: {
     loading,
   },
   setup() {
-    let progress = ref(0);
-    let entered = ref(false);
-    let loaded = ref(false);
-    let timer = setInterval(() => {
-      progress.value = page_progress;
-    }, 0);
+  
 
-    let enter = () => {
-      entered.value = true;
-    };
-
-    watch(progress, (value) => {
-      if (value == 1 && !loaded.value) {
-        clearInterval(timer);
-        setTimeout(() => {
-          loaded.value = true;
-        }, 100);
-      }
-    });
-
-    return { progress, loaded, enter, entered };
-  },
-  data() {
-    return {
-      progress: page_progress,
-    };
-  },
+    return useLoading()
+  }
 });
 </script>
 <style lang="scss">
@@ -57,7 +35,6 @@ html {
   height: 100vh;
   width: 100vw;
 }
-
 #nav {
   padding: 30px;
 

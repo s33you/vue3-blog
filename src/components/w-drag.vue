@@ -1,5 +1,5 @@
 <template>
-  <div class="w-drag" @mousedown.stop="handleMouseDownOnShape">
+  <div class="w-drag" @mousedown.stop="handleMouseDownOnShape" >
     <div
       class="shape-point"
       v-for="(item, index) in pointList"
@@ -12,7 +12,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { getPointStyle,handlePointMouseDown,Style} from "./utils";
+import { getPointStyle,handlePointMouseDown,Style} from "@/hooks/components/useDrag";
 const pointList: Array<string> = [ "ne", "se", "sw", "nw"];
 
 export default defineComponent({
@@ -27,11 +27,10 @@ export default defineComponent({
     },
   },
   inject:['container'],
-  setup(props, context) {
+  setup() {
     return { getPointStyle, pointList,handlePointMouseDown};
   },
   mounted(){
-    console.log(this)
   }
 });
 </script>

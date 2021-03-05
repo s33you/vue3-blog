@@ -1,23 +1,3 @@
-@function rpx($value, $design-width: 750px) {
-  @if type-of($value) == "number" and unit($value) == "px" {
-    @return $value * 100vw / $design-width;
-  } @else {
-    @return $value;
-  }
-}
-@function vpx($value, $design-width: 1334px) {
-  @if type-of($value) == "number" and unit($value) == "px" {
-    @return $value * 100vh / $design-width;
-  } @else {
-    @return $value;
-  }
-}
-@mixin container {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
 .button-classic {
   outline: none;
   padding: 0;
@@ -33,4 +13,11 @@
     border-bottom: 2px solid #efefef;
   }
 }
+.button-inner {
+  border-top: 2px solid gray;
+  border-left: 2px solid gray;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+}
 @import "./reset.scss";
+@import "./value.scss";

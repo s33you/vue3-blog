@@ -28,10 +28,9 @@ export default defineComponent({
       type: String,
     },
   },
-  setup(props, context) {
-    const color = exChangeAtrribe("color", props, context.attrs, colorTable);
-    const title = exChangeAtrribe("title", props, context.attrs);
-
+  setup(props, {attrs}) {
+    const color = exChangeAtrribe("color", props,attrs, colorTable);
+    const title = exChangeAtrribe("title", props, attrs);
     return { title, color };
   },
 });

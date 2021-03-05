@@ -4,6 +4,7 @@
     :style="getStyle(defaultStyle)"
     :minBox="minBox"
     class="w-dialog"
+    :class="color"
     v-if="!isClose"
     v-show="!isHidden"
   >
@@ -19,15 +20,19 @@
       </button>
     </div>
     <div class="content-block">
-      主区域
+      <slot>主区域</slot>
     </div>
   </w-drag>
 </template>
 <script lang="ts">
 import { defineComponent, inject, ref, shallowReactive } from "vue";
 import { getStyle } from "@/utils/style";
-import { Throttle } from "@/utils/tool";
-import wDrag from "@/components/drag/w-drag.vue";
+import { exChangeAtrribe, Throttle } from "@/utils/tool";
+import wDrag from "@/components/w-drag.vue";
+const colorTable: any = {
+  green: "card-secondary",
+  bule: "card-tertiary",
+};
 export default defineComponent({
   components: {
     wDrag,
@@ -35,6 +40,10 @@ export default defineComponent({
   props: {
     title: {
       default: "对话框",
+    },
+    color: {
+      type: String,
+      default: colorTable.bule,
     },
     defaultStyle: {
       type: Object,
@@ -53,7 +62,10 @@ export default defineComponent({
     },
   },
   inject: ["container"],
-  setup({ defaultStyle }, { emit }) {
+  setup(props, context) {
+    const color = props.color|| exChangeAtrribe("color", props, context.attrs, colorTable);
+    let { defaultStyle } = props;
+    let { emit } = context;
     const minBox = shallowReactive({
       width: 200,
       height: 100,
@@ -69,7 +81,6 @@ export default defineComponent({
       let startX = downEvent.pageX;
       let startTop = ele["top"];
       let startLeft = ele["left"];
-      
 
       let move = Throttle((moveEvent: any) => {
         moveEvent.stopPropagation(); //阻止冒泡影响父组件
@@ -85,7 +96,6 @@ export default defineComponent({
             left = left < 0 ? 0 : container.width - ele.width;
           }
         }
-
         defaultStyle.top = top;
         defaultStyle.left = left;
       }, 10);
@@ -110,6 +120,7 @@ export default defineComponent({
       emit("close");
     };
     return {
+      color,
       getStyle,
       handleMoveDialog,
       minBox,
@@ -132,9 +143,10 @@ export default defineComponent({
     position: relative;
     width: calc(100% -4px);
     transform: translateX(1px);
-    cursor: move;
     line-height: initial;
     height: vpx(30px);
+    cursor: move;
+
     #title {
       font-size: vpx(24px);
     }

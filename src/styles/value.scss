@@ -1,0 +1,22 @@
+@function rpx($value, $design-width: 750px) {
+  @if type-of($value) == "number" and unit($value) == "px" {
+    @return $value * 100vw / $design-width;
+  } @else {
+    @return $value;
+  }
+}
+@function vpx($value, $design-width: 1334px) {
+  @if type-of($value) == "number" and unit($value) == "px" {
+    @return $value * 100vh / $design-width;
+  } @else {
+    @return $value;
+  }
+}
+@mixin container {
+  width: 100%;
+  height: $container-height;
+  padding: 0;
+  margin: 0;
+}
+$task-bar-height:34px;
+$container-height:calc(100% - #{$task-bar-height});

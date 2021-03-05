@@ -19,8 +19,8 @@ export default defineComponent({
       type: String,
     },
   },
-  setup(props, context) {
-    const sizeClass = exChangeAtrribe("size", props, context.attrs, sizeTable);
+  setup(props, {attrs}) {
+    const sizeClass = exChangeAtrribe("size", props, attrs, sizeTable);
     return { sizeClass };
   },
 });

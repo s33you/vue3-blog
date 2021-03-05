@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1690502_9opdm0rrznj.css" >
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -17,15 +18,12 @@
         var page_progress = 0
         var sum = 0
         let links = document.getElementsByTagName("link");
-        console.log(links.length)
 
         for (let i = 0; i < links.length; i++) {
-          console.log(links.item(i).href)
           links.item(i).onload = () => {
             setTimeout(() => {
               if (page_progress != 1) {
                 page_progress = ((++sum) / links.length).toFixed(2)
-                console.log(page_progress)
               }
             }, 60)
           };

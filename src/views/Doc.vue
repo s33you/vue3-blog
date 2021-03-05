@@ -100,10 +100,18 @@
           :defaultStyle="defaultStyle"
           :isHidden="isHidden"
           @hidden="hidden"
-        ></w-dialog>
+        >
+          <w-icon icon="like" size="30"/>
+          <w-icon icon="github" size="30"/>
+          <w-icon icon="shake" size="30"/>
+          <w-icon icon="game" size="30"/>
+        </w-dialog>
       </div>
     </div>
     <!-- Dialog -->
+     <!-- TaskList -->
+    <w-task-list/>
+    <!-- TaskList -->
   </div>
 </template>
 <script lang="ts">

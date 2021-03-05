@@ -1,5 +1,5 @@
 
-import {limitInArea} from '@/utils/tool'
+import { limitInArea } from '@/utils/tool'
 export interface Prop {
     [propName: string]: any
     defaultStyle: {
@@ -15,6 +15,11 @@ export interface Style {
     width: number;
     height: number;
 }
+/**
+ * @description 根据字符串算出对应的缩放点样式
+ * @param props 
+ * @param point 点的字符串
+ */
 export function getPointStyle<T extends Prop>(props: T, point: string) {
     const { width, height } = props.defaultStyle;
     const hasT = /n/.test(point);
@@ -50,7 +55,15 @@ export function getPointStyle<T extends Prop>(props: T, point: string) {
     };
     return style;
 }
+/**
+ * @description 缩放点事件
+ * @param this 组件实例
+ * @param mark 缩放点标志字符串
+ * @param downEvent 鼠标事件
+ */
 export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEvent) {
+    downEvent.stopPropagation()
+    downEvent.preventDefault()
     let startX = downEvent.clientX;
     let startY = downEvent.clientY;
     let ele = this.defaultStyle;
@@ -58,14 +71,18 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
     let width = ele["width"];
     let top = ele["top"];
     let left = ele["left"];
+    // let scale = width / height;
     //长宽比例
-    let scale = width / height;
-    let { container,minBox} = this
-    console.log(container)
+    let { container, minBox } = this
+ 
     let move = (moveEvent: MouseEvent) => {
         moveEvent.stopPropagation()
         moveEvent.preventDefault()
+        /**
+         * 判定是否为对角锚点
+         */
         let proportion = /nw|ne|sw|se/.test(mark);
+
         let currX = moveEvent.clientX;
         let currY = moveEvent.clientY;
 
@@ -76,12 +93,15 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
         let hasS = /s/.test(mark);
         let hasW = /w/.test(mark);
         let hasE = /e/.test(mark);
+
         /**
          * 判断是否大于container
          */
+
         if (container) {
             if (top < 0 || top + ele.height > container.height) {
                 top = top < 0 ? 0 : container.height - ele.height;
+
             }
             if (left < 0 || left + ele.width > container.width) {
                 left = left < 0 ? 0 : container.width - ele.width;
@@ -102,19 +122,17 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
         let newHeight = +height + (hasN ? -disY : hasS ? disY : 0);
         let newWidth = +width + (hasW ? -disX : hasE ? disX : 0);
         /**
-         * 是否大于最小box-size
+         * 对值做出限定，从而限定布局
          */
-        ele["height"] = limitInArea(minBox.height,container.height,newHeight)
-        ele["width"] = limitInArea(minBox.width,container.width,newWidth)
-        ele["left"] = + left + (hasW ? disX : 0);
-        ele["top"] = + top + (hasN ? disY : 0);
+        ele["height"] = limitInArea(minBox.height, container.height, newHeight)
+        ele["width"] = limitInArea(minBox.width, container.width, newWidth)
+        ele["left"] = limitInArea(0, container.width - ele['width'], left + (hasW ? disX : 0))
+        ele["top"] = limitInArea(0, container.height - ele['height'], top + (hasN ? disY : 0))
     };
     let up = () => {
-        console.log(ele)
-
+        this.$emit('resize')
         document.removeEventListener("mousemove", move);
         document.removeEventListener("mouseup", up);
-        this.$emit('resize')
 
     };
     document.addEventListener("mousemove", move);
