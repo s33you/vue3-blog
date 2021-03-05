@@ -1,19 +1,15 @@
 # vue3-blog
+### 开发中。。。
+## 😁一套win95风格的静态博客
 
-## Project setup
-```
-npm install
-```
+## 所用技术
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+vue3 + typescript + node 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+node 主要是用来后面打包得时候解析markdown 文档并生成相应页面用  
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## 感谢
+部分样式 由[Windows 95 UI Kit ](https://github.com/themesberg/windows-95-ui-kit)提供
+ 
+
