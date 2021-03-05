@@ -4,9 +4,13 @@
       <w-icon icon="github" size="20" />
           <a href="https://github.com/s33you" target="blank">github</a>
     </button>
-    <div class="bar-window button-inner">相册</div>
-    <div class="bar-window button-inner">相册</div>
-    <div class="bar-window button-inner">相册</div>
+    <button class="button-classic start">
+      <w-icon icon="like" size="20" />
+         添加
+    </button>
+    <div class="bar-window button-inner" v-for="(task,index) in taskList" :key="index">
+      {{task.title}}
+    </div>
     <span class="time button-inner">
       {{ time }}
     </span>

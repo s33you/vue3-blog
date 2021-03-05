@@ -1,6 +1,6 @@
 
 import { limitInArea } from '@/utils/tool'
-export interface Prop {
+export interface DialogProp {
     [propName: string]: any
     defaultStyle: {
         width: number,
@@ -20,7 +20,7 @@ export interface Style {
  * @param props 
  * @param point 点的字符串
  */
-export function getPointStyle<T extends Prop>(props: T, point: string) {
+export function getPointStyle<T extends DialogProp>(props: T, point: string) {
     const { width, height } = props.defaultStyle;
     const hasT = /n/.test(point);
     const hasB = /s/.test(point);
