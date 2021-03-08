@@ -109,9 +109,7 @@
       </div>
     </div>
     <!-- Dialog -->
-     <!-- TaskList -->
-    <w-task-list/>
-    <!-- TaskList -->
+
   </div>
 </template>
 <script lang="ts">

@@ -140,12 +140,12 @@ body {
   width: rpx(100px);
   height: vpx(40px);
 
-  @media only screen and (max-width: 1024px) {
-    height: vpx(20px);
-    width: rpx(240px);
-    height: vpx(30px);
-    background-size: rpx(30px) rpx(30px);
-  }
+  // @media only screen and (max-width: 1024px) {
+  //   height: vpx(20px);
+  //   width: rpx(240px);
+  //   height: vpx(30px);
+  //   background-size: rpx(30px) rpx(30px);
+  // }
   background: linear-gradient(
     45deg,
     red 0,
@@ -165,7 +165,7 @@ body {
   font-size: vpx(60px);
    @media only screen and (max-width: 1024px) {
      font-size: vpx(50px);
-  line-height: vpx(100px);
+   line-height: vpx(100px);
 
   }
   font-weight: bold;

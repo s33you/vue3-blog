@@ -1,13 +1,11 @@
 <template>
   <div class="list-bar">
+    <!-- Start图标 -->
     <button class="button-classic start">
       <w-icon icon="github" size="20" />
       <a href="https://github.com/s33you" target="blank">github</a>
     </button>
-    <button class="button-classic start">
-      <w-icon icon="like" size="20" />
-      添加
-    </button>
+    <!-- 任务区域 -->
     <div class="task-area">
       <div
         class="bar-window"
@@ -16,10 +14,10 @@
         @click="selectTask(index)"
         :class="task.isActive ? 'button-inner' : 'button-classic'"
       >
-        {{ task.title }}
+        <img :src="task.img" v-if="task.img" /> {{ task.title }}
       </div>
     </div>
- 
+    <!-- 时间 -->
     <span class="time button-inner">
       {{ time }}
     </span>
@@ -28,14 +26,14 @@
 <script lang="ts">
 import { defineComponent, watchEffect } from "vue";
 import wIcon from "@/components/w-icon.vue";
-import useTaskList from "@/hooks/components/useTaskList";
+import useTaskList from "@/hooks/layouts/useTaskList";
 export default defineComponent({
   name: "w-task-list",
   components: {
     wIcon,
   },
   setup() {
-    const { createTask, time, taskList, selectTask ,maxIndex} = useTaskList();
+    const { createTask, time, taskList, selectTask } = useTaskList();
     return { createTask, time, taskList, selectTask };
   },
 });
@@ -81,6 +79,10 @@ export default defineComponent({
     flex-basis: 200px;
     padding: 0 10px 0 6px;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQYV2M8cODAf3t7ewbG/////z948CADAFuqCj64BtLKAAAAAElFTkSuQmCC);
+    img {
+      width: 20px;
+      vertical-align: middle;
+    }
   }
   .time {
     position: absolute;

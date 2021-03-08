@@ -3,12 +3,13 @@ import { DialogProp } from './useDrag'
 /**
  * Interface
  */
-interface Task {
+export interface Task {
     title: string,
     defaultStyle?: DialogProp,
     isActive: boolean,
     isShow: boolean,//用于dialog的显示判断
-    zIndex?: number
+    zIndex?: number,
+    img?: string
 }
 interface TaskState {
     maxIndex: number,
@@ -20,13 +21,9 @@ interface TaskState {
  * Init Data
  */
 const Tasks: Array<Task> = [
-    { title: '相册', isActive: true, isShow: false },
-    { title: 'Blog', isActive: false, isShow: false },
-    { title: '影像', isActive: false, isShow: false },
+
 ]
-Tasks.forEach((task, index) => {
-    task.zIndex = index + 99
-})
+
 /**
  * Actions
  */
@@ -42,7 +39,25 @@ function createActions(state: TaskState) {
 //创建任务
 function createTask({ tasks }: TaskState) {
     return (task: Task) => {
-        tasks.push(task)
+        /**
+         * 是否已经打开
+         */
+        let flag = true
+        tasks.forEach((exist_task, index) => {
+            if (exist_task === task) {
+                flag = false
+                TaskStore.actions.selectTask(index)
+            }
+        })
+        /**
+         * 没有打开，新建
+         */
+        if (flag) {
+            task.zIndex = TaskStore.state.maxIndex
+            let index = tasks.push(task)
+            TaskStore.actions.selectTask(index - 1)
+        }
+
     }
 }
 //删除任务
@@ -81,7 +96,7 @@ class TaskStore {
     static state = reactive<TaskState>({
         tasks: Tasks,
         activeIndex: 0,
-        maxIndex: 0
+        maxIndex: 99
     })
     static actions = createActions(TaskStore.state)
 
