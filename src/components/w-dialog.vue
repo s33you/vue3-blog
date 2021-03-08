@@ -133,6 +133,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .w-dialog {
+  z-index: 99;
   position: relative;
   border-top: 2px solid #efefef;
   border-left: 2px solid #efefef;

@@ -2,31 +2,41 @@
   <div class="list-bar">
     <button class="button-classic start">
       <w-icon icon="github" size="20" />
-          <a href="https://github.com/s33you" target="blank">github</a>
+      <a href="https://github.com/s33you" target="blank">github</a>
     </button>
     <button class="button-classic start">
       <w-icon icon="like" size="20" />
-         添加
+      添加
     </button>
-    <div class="bar-window button-inner" v-for="(task,index) in taskList" :key="index">
-      {{task.title}}
+    <div class="task-area">
+      <div
+        class="bar-window"
+        v-for="(task, index) in taskList"
+        :key="index"
+        @click="selectTask(index)"
+        :class="task.isActive ? 'button-inner' : 'button-classic'"
+      >
+        {{ task.title }}
+      </div>
     </div>
+ 
     <span class="time button-inner">
       {{ time }}
     </span>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent} from "vue";
+import { defineComponent, watchEffect } from "vue";
 import wIcon from "@/components/w-icon.vue";
-import useTaskList from '@/hooks/components/useTaskList'
+import useTaskList from "@/hooks/components/useTaskList";
 export default defineComponent({
   name: "w-task-list",
   components: {
     wIcon,
   },
   setup() {
-    return useTaskList()
+    const { createTask, time, taskList, selectTask ,maxIndex} = useTaskList();
+    return { createTask, time, taskList, selectTask };
   },
 });
 </script>
@@ -47,6 +57,7 @@ export default defineComponent({
   user-select: none;
   display: flex;
   .start {
+    flex-shrink: 0;
     height: 30px;
     width: 100px;
     margin: auto 0px;
@@ -55,7 +66,13 @@ export default defineComponent({
     font-family: Pxiel;
     align-items: center;
   }
+  .task-area {
+    display: flex;
+    width: 100%;
+    margin-right: 95px;
+  }
   .bar-window {
+    flex-shrink: 1;
     height: 28px;
     margin-right: 10px;
     text-align: center;
@@ -68,6 +85,7 @@ export default defineComponent({
   .time {
     position: absolute;
     right: 10px;
+    bottom: 2px;
     line-height: 30px;
     padding: 0 10px;
   }
