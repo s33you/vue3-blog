@@ -1,16 +1,16 @@
 <template>
   <div class="home">
-    <w-icon-list />
-    <w-task-list/>
+    <IconList />
+    <TaskList/>
   </div>
 </template>
 <script lang="ts">
-import WIconList from "@/layouts/w-icon-list.vue";
-import WTaskList from "@/layouts/w-task-list.vue";
+import IconList from "@/layouts/IconList.vue";
+import TaskList from "@/layouts/TaskList.vue";
 import { defineComponent, onMounted } from "vue";
 
 export default defineComponent({
-  components:{WIconList, WTaskList},
+  components:{IconList, TaskList},
   name: "Home",
   setup() {
     onMounted(() => {
