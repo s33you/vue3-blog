@@ -5,17 +5,21 @@
     :minBox="minBox"
     class="w-dialog"
     :class="color"
-    v-if="!isClose"
-    v-show="!isHidden"
+    v-show="isShow"
   >
-    <div class="card-header dialog-header" @mousedown.stop="handleMoveDialog">
+    <div
+      class="card-header dialog-header"
+      @mousedown.stop="handleMoveDialog"
+      @click="selectDialog"
+    >
+      <img id="icon" :src="icon" v-if="icon" />
       <span id="title">
         {{ title }}
       </span>
-      <button class="button-classic icon-button" @click="handleClose">
+      <button class="button-classic icon-button" @click.stop="handleClose">
         x
       </button>
-      <button class="button-classic icon-button" @click="handleHidden">
+      <button class="button-classic icon-button" @click.stop="handleHidden">
         -
       </button>
     </div>
@@ -53,25 +57,28 @@ export default defineComponent({
         left: 10,
         height: 100,
       },
-      required: true,
     },
-    isHidden: {
+    isShow: {
       type: Boolean,
       default: false,
-      required: true,
+    },
+    icon: {
+      type: String,
+      default: "",
     },
   },
   inject: ["container"],
   setup(props, context) {
-    const color = props.color|| exChangeAtrribe("color", props, context.attrs, colorTable);
+    const color =
+      props.color || exChangeAtrribe("color", props, context.attrs, colorTable);
     let { defaultStyle } = props;
     let { emit } = context;
     const minBox = shallowReactive({
       width: 200,
       height: 100,
     });
-    const isClose = ref(false);
     const container = inject("container") as any;
+    console.log("container", container);
     /**移动 */
     const handleMoveDialog = (downEvent: MouseEvent) => {
       downEvent.stopPropagation();
@@ -89,11 +96,11 @@ export default defineComponent({
         let top = currY - startY + startTop;
         let left = currX - startX + startLeft;
         if (container) {
-          if (top < 0 || top + ele.height > container.height) {
-            top = top < 0 ? 0 : container.height - ele.height;
+          if (top < 0 || top + ele.height > container.height - 10) {
+            top = top < 0 ? 0 : container.height - ele.height - 30;
           }
-          if (left < 0 || left + ele.width > container.width) {
-            left = left < 0 ? 0 : container.width - ele.width;
+          if (left < 0 || left + ele.width > container.width - 10) {
+            left = left < 0 ? 0 : container.width - ele.width - 30;
           }
         }
         defaultStyle.top = top;
@@ -116,15 +123,17 @@ export default defineComponent({
      * 关闭
      */
     const handleClose = () => {
-      isClose.value = true;
       emit("close");
     };
+    const selectDialog = ()=>{
+      emit("select")
+    }
     return {
+      selectDialog,
       color,
       getStyle,
       handleMoveDialog,
       minBox,
-      isClose,
       handleHidden,
       handleClose,
     };
@@ -134,22 +143,25 @@ export default defineComponent({
 <style lang="scss" scoped>
 .w-dialog {
   z-index: 99;
-  position: relative;
+  position: absolute;
   border-top: 2px solid #efefef;
   border-left: 2px solid #efefef;
   border-right: 2px solid #000;
   border-bottom: 2px solid #000;
 
   .dialog-header {
-    position: relative;
     width: calc(100% -4px);
     transform: translateX(1px);
     line-height: initial;
+    text-align: left;
     height: vpx(30px);
     cursor: move;
-
     #title {
       font-size: vpx(24px);
+    }
+    #icon {
+      width: vpx(24px);
+      margin: 3px 3px 0 0;
     }
   }
   .content-block {

@@ -1,5 +1,6 @@
 
 import { limitInArea } from '@/utils/tool'
+
 export interface DialogProp {
     [propName: string]: any
     defaultStyle: {
@@ -9,11 +10,13 @@ export interface DialogProp {
         left: number,
         [propName: string]: any
     }
-    minBox: Style
+    minBox?: Style
 }
 export interface Style {
     width: number;
     height: number;
+    top?:number;
+    left:number
 }
 /**
  * @description 根据字符串算出对应的缩放点样式
@@ -99,7 +102,7 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
          */
 
         if (container) {
-            if (top < 0 || top + ele.height > container.height) {
+            if (top < 0 || top + ele.height > container.height  ) {
                 top = top < 0 ? 0 : container.height - ele.height;
 
             }
@@ -124,10 +127,10 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
         /**
          * 对值做出限定，从而限定布局
          */
-        ele["height"] = limitInArea(minBox.height, container.height, newHeight)
-        ele["width"] = limitInArea(minBox.width, container.width, newWidth)
-        ele["left"] = limitInArea(0, container.width - ele['width'], left + (hasW ? disX : 0))
-        ele["top"] = limitInArea(0, container.height - ele['height'], top + (hasN ? disY : 0))
+        ele["height"] = limitInArea(minBox.height, container.height -20, newHeight)
+        ele["width"] = limitInArea(minBox.width, container.width-20, newWidth)
+        ele["left"] = limitInArea(0, container.width - ele['width']-20, left + (hasW ? disX : 0))
+        ele["top"] = limitInArea(0, container.height - ele['height']-20, top + (hasN ? disY : 0))
     };
     let up = () => {
         this.$emit('resize')

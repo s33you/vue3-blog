@@ -1,11 +1,11 @@
 import { reactive, watch } from 'vue'
-import { DialogProp } from '../components/useDrag'
+import { Style} from '../components/useDrag'
 /**
  * Interface
  */
 export interface Task {
     title: string,
-    defaultStyle?: DialogProp,
+    defaultStyle?: Style,
     isActive: boolean,
     isShow: boolean,//用于dialog的显示判断
     zIndex?: number,
@@ -99,12 +99,6 @@ class TaskStore {
         maxIndex: 99
     })
     static actions = createActions(TaskStore.state)
-
-    static watcher = watch(TaskStore.state, (nVal) => {
-        console.log(nVal)
-    }, {
-        deep: true
-    })
 }
 
 export default TaskStore
