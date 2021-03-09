@@ -31,6 +31,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .md-container {
+    .hljs{
+       background:rgba(3, 56, 52, 0.192);
+    }
   * {
     font-family:initial;
     text-align: left;
@@ -42,5 +45,5 @@ export default defineComponent({
   height: 100%;
   overflow: scroll;
 }
-@import "/node_modules/highlight.js/scss/dark";
+@import "/node_modules/highlight.js/scss/stackoverflow-light";
 </style>
