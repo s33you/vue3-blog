@@ -1,5 +1,5 @@
 import { reactive, watch } from 'vue'
-import { DialogProp } from './useDrag'
+import { DialogProp } from '../components/useDrag'
 /**
  * Interface
  */

@@ -1,6 +1,6 @@
 import { dateFormat } from '@/utils/tool';
 import { onMounted, ref } from 'vue'
-import TaskStore from '../components/useTaskStore'
+import TaskStore from './useTaskStore'
 function useTaskList(){
     const time = ref(dateFormat("hh:mm:ss", new Date()));
     const taskList = TaskStore.state.tasks

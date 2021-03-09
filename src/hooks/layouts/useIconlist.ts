@@ -1,6 +1,6 @@
 import { reactive,withModifiers } from "vue"
-import TaskStore from '../components/useTaskStore'
-import {Task} from '../components/useTaskStore'
+import TaskStore from './useTaskStore'
+import {Task} from './useTaskStore'
 const _iconList:Array<Task> = [
    {
        title:'相册',
