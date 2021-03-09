@@ -22,7 +22,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss" scoped>
 .icon_list {
   padding: 20px 0 0 20px;
   width: calc(100% - 20px);

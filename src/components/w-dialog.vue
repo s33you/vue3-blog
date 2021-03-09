@@ -24,7 +24,9 @@
       </button>
     </div>
     <div class="content-block">
-      <slot>主区域</slot>
+      <slot>
+        <w-md/>
+      </slot>
     </div>
   </w-drag>
 </template>
@@ -33,6 +35,7 @@ import { defineComponent, inject, ref, shallowReactive } from "vue";
 import { getStyle } from "@/utils/style";
 import { exChangeAtrribe, Throttle } from "@/utils/tool";
 import wDrag from "@/components/w-drag.vue";
+import WMd from "./w-md.vue";
 const colorTable: any = {
   green: "card-secondary",
   bule: "card-tertiary",
@@ -40,6 +43,7 @@ const colorTable: any = {
 export default defineComponent({
   components: {
     wDrag,
+    WMd,
   },
   props: {
     title: {

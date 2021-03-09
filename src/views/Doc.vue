@@ -157,7 +157,7 @@ const Doc = defineComponent({
 });
 export default Doc;
 </script>
-<style lang="scss" sc>
+<style lang="scss" scoped>
 code {
   font-size: rpx(10px);
   color: #00797c;
