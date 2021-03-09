@@ -5,9 +5,8 @@ import useTaskList from "@/hooks/layouts/useTaskList";
 import WDialog from "@/components/w-dialog.vue";
 export default defineComponent({
   components: { WDialog },
-  setup() {
+  setup(props,context) {
     const { taskList, removeTask, selectTask } = useTaskList();
-
     return {
       taskList,
       removeTask,
@@ -20,19 +19,19 @@ export default defineComponent({
         <w-dialog
           defaultStyle={task.defaultStyle}
           title={task.title}
-          color="green"
           isShow={task.isShow}
           icon={task.img}
           style={`zIndex:${task.zIndex}`}
           onSelect={() => {
             this.selectTask(index);
           }}
+          isActive={task.isActive}
           onHidden={() => {
             task.isShow = false;
             task.isActive = false;
           }}
           onClose={() => {
-            this.removeTask(index);
+            this.removeTask(index); 
           }}
         />
       );

@@ -4,7 +4,7 @@
     :style="getStyle(defaultStyle)"
     :minBox="minBox"
     class="w-dialog"
-    :class="color"
+    :class="isActive?'card-secondary':''"
     v-show="isShow"
   >
     <div
@@ -66,6 +66,10 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    isActive:{
+      type:Boolean,
+      default:false
+    }
   },
   inject: ["container"],
   setup(props, context) {
