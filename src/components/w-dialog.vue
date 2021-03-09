@@ -4,7 +4,7 @@
     :style="getStyle(defaultStyle)"
     :minBox="minBox"
     class="w-dialog"
-    :class="isActive?'card-secondary':''"
+    :class="isActive ? 'card-secondary' : ''"
     v-show="isShow"
   >
     <div
@@ -22,10 +22,13 @@
       <button class="button-classic icon-button" @click.stop="handleHidden">
         -
       </button>
+      <button class="button-classic icon-button" @click.stop="handleZoom">
+        ◻
+      </button>
     </div>
     <div class="content-block">
       <slot>
-        <w-md/>
+        <w-md />
       </slot>
     </div>
   </w-drag>
@@ -70,10 +73,10 @@ export default defineComponent({
       type: String,
       default: "",
     },
-    isActive:{
-      type:Boolean,
-      default:false
-    }
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
   },
   inject: ["container"],
   setup(props, context) {
@@ -133,8 +136,11 @@ export default defineComponent({
     const handleClose = () => {
       emit("close");
     };
-    const selectDialog = ()=>{
-      emit("select")
+    const selectDialog = () => {
+      emit("select");
+    };
+    const handleZoom = ()=>{
+      emit('zoom')
     }
     return {
       selectDialog,
@@ -144,6 +150,7 @@ export default defineComponent({
       minBox,
       handleHidden,
       handleClose,
+      handleZoom
     };
   },
 });
