@@ -1,5 +1,5 @@
 import { reactive, watch } from 'vue'
-import { Style} from '../components/useDrag'
+import { Style } from '../components/useDrag'
 /**
  * Interface
  */
@@ -76,6 +76,8 @@ function updateTask({ tasks }: TaskState) {
 function selectTask(state: TaskState) {
     return (index: number) => {
         let max = 99
+        let task = state.tasks[index]
+
         state.tasks.forEach((task) => {
             task.isActive && (task.isActive = false)
             if (task.zIndex) {
@@ -83,9 +85,9 @@ function selectTask(state: TaskState) {
             }
         })
         //选中必然会展示dialog
-        state.tasks[index].isShow = true
-        state.tasks[index].isActive = true
-        state.tasks[index].zIndex = max + 1
+        task.isShow = true
+        task.isActive = true
+        task.zIndex = max + 1
         state.maxIndex = max + 1
         state.activeIndex = index
     }

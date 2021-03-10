@@ -68,7 +68,7 @@ export default defineComponent({
   }
   width: calc(100% - 40px);
   height: calc(100% - 40px);
-  overflow: scroll;
+  overflow-y: scroll;
 }
 @import "/node_modules/highlight.js/scss/stackoverflow-light";
 </style>
