@@ -101,21 +101,22 @@
           :isHidden="isHidden"
           @hidden="hidden"
         >
-          <w-icon icon="like" size="30"/>
-          <w-icon icon="github" size="30"/>
-          <w-icon icon="shake" size="30"/>
-          <w-icon icon="game" size="30"/>
+          <w-icon icon="like" size="30" />
+          <w-icon icon="github" size="30" />
+          <w-icon icon="shake" size="30" />
+          <w-icon icon="game" size="30" />
         </w-dialog>
       </div>
     </div>
     <!-- Dialog -->
-
+  
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
 import { getComponents } from "@/utils/tool";
 import { getStyle } from "@/utils/style";
+
 const components: any = getComponents();
 const Doc = defineComponent({
   components: {
@@ -125,13 +126,14 @@ const Doc = defineComponent({
   setup(props, context) {
     onMounted(() => {
       // FullScreen()
+     
     });
-    return {getStyle}
+    return { getStyle };
   },
-  provide(){
+  provide() {
     return {
-      container:this.container
-    }
+      container: this.container,
+    };
   },
   methods: {
     hidden() {
@@ -148,19 +150,24 @@ const Doc = defineComponent({
         height: 100,
       },
       isHidden: false,
-      container:{
-        width:400,
-        height:400
-      }
+      container: {
+        width: 400,
+        height: 400,
+      },
     };
   },
 });
 export default Doc;
 </script>
 <style lang="scss" scoped>
+
 code {
   font-size: rpx(10px);
   color: #00797c;
+}
+.editor {
+  width: 800px;
+  height: 500px;
 }
 .doc {
   @include container;
