@@ -2,10 +2,6 @@
     font-family: Pxiel;
     src: url("../assets/fonts/font-pixel.TTF");
 }
-@font-face {
-    font-family: MingChao;
-    src: url("../assets/fonts/GenWanMinJP-Light-2.ttf");
-}
 
 @font-face {
     font-family: MingChao-Medium;
