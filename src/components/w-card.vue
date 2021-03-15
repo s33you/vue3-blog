@@ -36,9 +36,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-
 .card {
-  
   .card-header {
     line-height: initial;
     height: vpx(30px);

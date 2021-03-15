@@ -26,17 +26,6 @@ const _iconList: Array<Task> = [
 export function useIconList() {
     const iconList = reactive(_iconList)
     const { createTask } = TaskStore.actions
-    onMounted(() => {
-        const desktop = document.querySelector("#desktop") as HTMLElement;
-        iconList.forEach(icon => {
-            icon.defaultStyle = {
-                width: desktop.clientWidth / 2,
-                height: desktop.clientHeight / 2,
-                left: desktop.clientWidth / 4,
-                top: desktop.clientHeight / 4
-            }
-        })
-    })
     const addDialog = (icon: Task) => {
         createTask(icon)
     }

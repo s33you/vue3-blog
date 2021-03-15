@@ -18,7 +18,6 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .w-icon {
-    
   display: inline-block;
 }
 </style>

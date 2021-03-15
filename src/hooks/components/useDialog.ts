@@ -28,10 +28,10 @@ export function useDialog(props: { defaultStyle: any; }, context: { emit: any; }
             let left = currX - startX + startLeft;
             if (container) {
                 if (top < 0 || top + ele.height > container.height - 10) {
-                    top = top < 0 ? 0 : container.height - ele.height - 30;
+                    top = top < 0 ? 0 : container.height - ele.height - 10;
                 }
                 if (left < 0 || left + ele.width > container.width - 10) {
-                    left = left < 0 ? 0 : container.width - ele.width - 30;
+                    left = left < 0 ? 0 : container.width - ele.width - 10;
                 }
             }
             defaultStyle.top = top;
@@ -60,6 +60,10 @@ export function useDialog(props: { defaultStyle: any; }, context: { emit: any; }
         emit("select");
     };
     const handleZoom = () => {
+        defaultStyle.width = container.width -20
+        defaultStyle.height = container.height -30
+        defaultStyle.top = 10
+        defaultStyle.left = 10
         emit('zoom')
     }
     return {

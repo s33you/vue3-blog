@@ -11,7 +11,7 @@
         class="bar-window"
         v-for="(task, index) in taskList"
         :key="index"
-        @click="selectTask(index)"
+        @click="clickTask(index,task)"
         :class="task.isActive ? 'button-inner' : 'button-classic'"
       >
         <img :src="task.img" v-if="task.img" /> {{ task.title }}
@@ -27,14 +27,23 @@
 import { defineComponent, watchEffect } from "vue";
 import wIcon from "@/components/w-icon.vue";
 import useTaskList from "@/hooks/layouts/useTaskList";
+import { Task } from "@/hooks/layouts/useTaskStore";
 export default defineComponent({
   name: "w-task-list",
   components: {
     wIcon,
   },
   setup() {
-    const { createTask, time, taskList, selectTask } = useTaskList();
-    return { createTask, time, taskList, selectTask };
+    const { createTask, time, taskList, selectTask,hiddenTask } = useTaskList();
+    const clickTask = (index:number,task:Task)=>{
+      if(task.isActive){
+        hiddenTask(index)
+      }
+      else{
+        selectTask(index)
+      }
+    }
+    return { createTask, time, taskList,clickTask };
   },
 });
 </script>

@@ -6,11 +6,12 @@ import WDialog from "@/components/w-dialog.vue";
 export default defineComponent({
   components: { WDialog },
   setup(props,context) {
-    const { taskList, removeTask, selectTask } = useTaskList();
+    const { taskList, removeTask, selectTask ,hiddenTask} = useTaskList();
     return {
       taskList,
       removeTask,
       selectTask,
+      hiddenTask
     };
   },
   render() {
@@ -27,8 +28,7 @@ export default defineComponent({
           }}
           isActive={task.isActive}
           onHidden={() => {
-            task.isShow = false;
-            task.isActive = false;
+            this.hiddenTask(index)
           }}
           onClose={() => {
             this.removeTask(index); 

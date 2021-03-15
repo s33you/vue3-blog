@@ -1,64 +1,49 @@
-const { readFileSync, writeFileSync} = require('fs');
-const MarkdownIt = require('markdown-it')
-const hljs = require('highlight.js')
+const { readFileSync, writeFileSync } = require("fs");
+const MarkdownIt = require("markdown-it");
+const hljs = require("highlight.js");
 const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-  breaks:true,
-  highlight:
-  function(str, lang) {
+  breaks: true,
+  highlight: function(str, lang) {
+    let preCode = "";
     // 此处判断是否有添加代码语言
     if (lang && hljs.getLanguage(lang)) {
-      try {
-        // 得到经过highlight.js之后的html代码
-        const preCode = hljs.highlight(lang, str, true).value;
-        // 以换行进行分割
-        const lines = preCode.split(/\n/).slice(0, -1);
-        // 添加自定义行号
-        let html = lines
-          .map((item, index) => {
-            return (
-              '<li><span class="line-num" data-line="' +
-              (index + 1) +
-              '"></span>' +
-              item +
-              "</li>"
-            );
-          })
-          .join("");
-        html = "<ol>" + html + "</ol>";
-        // 添加代码语言
-        if (lines.length) {
-          html += '<b class="name">' + lang + "</b>";
-        }
-        return '<pre class="hljs"><code>' + html + "</code></pre>";
-      } catch (__) {}
+      preCode = hljs.highlight(lang, str, true).value;
+    } else {
+      preCode = md.utils.escapeHtml(str);
     }
-    // 未添加代码语言，此处与上面同理
-    const preCode = md.utils.escapeHtml(str);
-    const lines = preCode.split(/\n/).slice(0, -1);
-    let html = lines
-      .map((item, index) => {
-        return (
-          '<li><span class="line-num" data-line="' +
-          (index + 1) +
-          '"></span>' +
-          item +
-          "</li>"
-        );
-      })
-      .join("");
-    html = "<ol>" + html + "</ol>";
-    return '<pre class="hljs"><code>' + html + "</code></pre>";
+    try {
+      // 得到经过highlight.js之后的html代码
+      console.log(preCode);
+      // 以换行进行分割
+      const lines = preCode.split(/\n/).slice(0, -1);
+      // 添加自定义行号
+      let html = lines
+        .map((item, index) => {
+          return (
+            `<li><span class="line-num" data-line="${index+1}"></span>${item}</li>`
+          );
+        })
+        .join("");
+      // 添加代码语言
+      return `<pre class="hljs"><code><span class="name"> ${lang?"lang:"+ lang:"lang:normal" }</span><ol>${html}</ol></code></pre>`;
+    } catch (e) {}
   },
 });
 
-let mdstr = readFileSync('./test.md',{
-    encoding:'utf-8'
-})
+let mdstr = readFileSync("./test.md", {
+  encoding: "utf-8",
+});
 let result = md.render(mdstr);
-writeFileSync('./test.html',result,{
-    encoding:'utf-8'
-})
-console.log(result)
+
+let html = `const blog = \`${result}\`
+export default blog
+`;
+writeFileSync("../src/blogs/blog.ts", html, {
+  encoding: "utf-8",
+});
+writeFileSync("./test.html", result, {
+  encoding: "utf-8",
+});

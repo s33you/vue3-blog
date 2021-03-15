@@ -1,4 +1,4 @@
-import { reactive, watch } from 'vue'
+import { onMounted, reactive, watch } from 'vue'
 import { Style } from '../components/useDrag'
 /**
  * Interface
@@ -23,7 +23,6 @@ interface TaskState {
 const Tasks: Array<Task> = [
 
 ]
-
 /**
  * Actions
  */
@@ -33,7 +32,8 @@ function createActions(state: TaskState) {
         createTask: createTask(state),
         removeTask: removeTask(state),
         updateTask: updateTask(state),
-        selectTask: selectTask(state)
+        selectTask: selectTask(state),
+        hiddenTask: hiddenTask(state)
     }
 }
 //创建任务
@@ -54,10 +54,19 @@ function createTask({ tasks }: TaskState) {
          */
         if (flag) {
             task.zIndex = TaskStore.state.maxIndex
+            /**
+             * 重置默认样式
+             */
+            const desktop = document.querySelector("#desktop") as HTMLElement;
+            task.defaultStyle = {
+                width: desktop.clientWidth / 2,
+                height: desktop.clientHeight / 2,
+                left: desktop.clientWidth / 4,
+                top: desktop.clientHeight / 4
+            }
             let index = tasks.push(task)
             TaskStore.actions.selectTask(index - 1)
         }
-
     }
 }
 //删除任务
@@ -70,6 +79,13 @@ function removeTask({ tasks }: TaskState) {
 function updateTask({ tasks }: TaskState) {
     return (index: number, nTask: Task) => {
         tasks[index] = nTask
+    }
+}
+//隐藏任务
+function hiddenTask({ tasks }: TaskState) {
+    return (index: number) => {
+        tasks[index].isShow = false;
+        tasks[index].isActive = false;
     }
 }
 //选择任务 

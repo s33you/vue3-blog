@@ -19,11 +19,11 @@
       <button class="button-classic icon-button" @click.stop="handleClose">
         x
       </button>
+       <button class="button-classic icon-button" @click.stop="handleZoom">
+        ◻
+      </button>
       <button class="button-classic icon-button" @click.stop="handleHidden">
         -
-      </button>
-      <button class="button-classic icon-button" @click.stop="handleZoom">
-        ◻
       </button>
     </div>
     <div class="content-block">
