@@ -28,7 +28,7 @@
     </div>
     <div class="content-block">
       <slot>
-        <w-md />
+        对话框默认内容
       </slot>
     </div>
   </w-drag>
@@ -38,11 +38,13 @@ import { defineComponent, inject, ref, shallowReactive } from "vue";
 import {useDialog} from '@/hooks/components/useDialog'
 import wDrag from "@/components/w-drag.vue";
 import WMd from "./w-md.vue";
+import MarkDownList from "@/layouts/MarkDownList.vue";
 
 export default defineComponent({
   components: {
     wDrag,
     WMd,
+    MarkDownList,
   },
   props: {
     title: {

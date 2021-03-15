@@ -1,7 +1,6 @@
 <script lang="tsx">
 import { defineComponent } from "vue";
 import useTaskList from "@/hooks/layouts/useTaskList";
-
 import WDialog from "@/components/w-dialog.vue";
 export default defineComponent({
   components: { WDialog },
@@ -33,7 +32,7 @@ export default defineComponent({
           onClose={() => {
             this.removeTask(index); 
           }}
-        />
+        ></w-dialog>
       );
     });
   },

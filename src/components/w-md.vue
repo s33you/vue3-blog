@@ -1,5 +1,5 @@
 <template>
-  <div class="md-container" v-html="blog"></div>
+  <div class="md-container" v-html="blog[0].content"></div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -10,7 +10,6 @@ export default defineComponent({
   },
 });
 </script>
-
 <style lang="scss" scoped>
 .md-container {
   padding: 20px;

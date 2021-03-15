@@ -1,49 +1,19 @@
-const { readFileSync, writeFileSync } = require("fs");
-const MarkdownIt = require("markdown-it");
-const hljs = require("highlight.js");
-const md = new MarkdownIt({
-  html: true,
-  linkify: true,
-  typographer: true,
-  breaks: true,
-  highlight: function(str, lang) {
-    let preCode = "";
-    // 此处判断是否有添加代码语言
-    if (lang && hljs.getLanguage(lang)) {
-      preCode = hljs.highlight(lang, str, true).value;
-    } else {
-      preCode = md.utils.escapeHtml(str);
-    }
-    try {
-      // 得到经过highlight.js之后的html代码
-      console.log(preCode);
-      // 以换行进行分割
-      const lines = preCode.split(/\n/).slice(0, -1);
-      // 添加自定义行号
-      let html = lines
-        .map((item, index) => {
-          return (
-            `<li><span class="line-num" data-line="${index+1}"></span>${item}</li>`
-          );
-        })
-        .join("");
-      // 添加代码语言
-      return `<pre class="hljs"><code><span class="name"> ${lang?"lang:"+ lang:"lang:normal" }</span><ol>${html}</ol></code></pre>`;
-    } catch (e) {}
-  },
-});
-
-let mdstr = readFileSync("./test.md", {
+const { readFileSync, writeFileSync, readdirSync } = require("fs");
+const { resolve } = require("path");
+const dir = resolve(__dirname, "../");
+const blogPath = resolve(dir, "src/blogs");
+const { render } = require("./md-init");
+let mdstr = readdirSync(blogPath, {
   encoding: "utf-8",
 });
-let result = md.render(mdstr);
-
-let html = `const blog = \`${result}\`
-export default blog
-`;
-writeFileSync("../src/blogs/blog.ts", html, {
-  encoding: "utf-8",
+const  blogs = [];
+mdstr.forEach((file) => {
+  if (/^.*\.md$/.test(file)) {
+    let markdown = readFileSync(resolve(blogPath, file), {
+      encoding: "utf-8",
+    });
+    let result = render(markdown);
+    blogs.push(result)
+  }
 });
-writeFileSync("./test.html", result, {
-  encoding: "utf-8",
-});
+writeFileSync(resolve(blogPath,'blogs.json'),JSON.stringify(blogs))
