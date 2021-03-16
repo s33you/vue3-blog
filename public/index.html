@@ -11,6 +11,12 @@
     <script>
       let preImage =  new Image()
       preImage.src = "/NERV_Logo.png"
+      let flag = true
+      preImage.onload = ()=>{
+        flag = false
+      }
+
+      while(flag)
     </script>
   </head>
   <body>

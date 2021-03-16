@@ -8,7 +8,10 @@ vue3 + typescript + node
 
 node 主要是用来后面打包得时候解析markdown 文档并生成相应页面用  
 
-
+## TODOList
+1. - [ ] 博客分类/时间轴？  
+2. - [ ] 相册  
+3. - [ ] 音乐播放器 
 ## 感谢
 部分样式 由[Windows 95 UI Kit ](https://github.com/themesberg/windows-95-ui-kit)提供
  
