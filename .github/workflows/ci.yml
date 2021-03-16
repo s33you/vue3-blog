@@ -22,4 +22,4 @@ jobs:
           branch: gh-pages
           folder: dist
           token: ${{ secrets.ACCESS_TOKEN }}
-          
+          repository-name : s33you.github.io
