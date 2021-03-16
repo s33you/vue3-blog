@@ -6,11 +6,12 @@
     class="w-dialog"
     :class="isActive ? 'card-secondary' : ''"
     v-show="isShow"
+    @click.stop="selectDialog"
   >
     <div
       class="card-header dialog-header"
       @mousedown.stop="handleMoveDialog"
-      @click="selectDialog"
+      
     >
       <img id="icon" :src="icon" v-if="icon" />
       <span id="title">
@@ -19,7 +20,7 @@
       <button class="button-classic icon-button" @click.stop="handleClose">
         x
       </button>
-       <button class="button-classic icon-button" @click.stop="handleZoom">
+      <button class="button-classic icon-button" @click.stop="handleZoom">
         ◻
       </button>
       <button class="button-classic icon-button" @click.stop="handleHidden">
@@ -35,13 +36,12 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import {useDialog} from '@/hooks/components/useDialog'
+import { useDialog } from "@/hooks/components/useDialog";
 import wDrag from "@/components/w-drag.vue";
-
 
 export default defineComponent({
   components: {
-    wDrag
+    wDrag,
   },
   props: {
     title: {
@@ -69,10 +69,10 @@ export default defineComponent({
       default: false,
     },
   },
-  emits:['select','hidden','zoom','close'],
+  emits: ["select", "hidden", "zoom", "close"],
   inject: ["container"],
   setup(props, context) {
-    return {...useDialog(props,context)}
+    return { ...useDialog(props, context) };
   },
 });
 </script>
