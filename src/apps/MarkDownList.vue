@@ -19,7 +19,6 @@ export default defineComponent({
   setup() {
     const { createTask } = TaskStore.actions;
     const openBlog = (blog: Blog) => {
-        console.log(blog)
       const task: Task = {
         title: blog.title,
         props: {

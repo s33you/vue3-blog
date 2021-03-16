@@ -9,7 +9,6 @@ export function useDialog(props: { defaultStyle: any; }, context: { emit: any; }
         height: 100,
     });
     const container = inject("container") as any;
-    console.log("container", container);
     /**移动 */
     const handleMoveDialog = (downEvent: MouseEvent) => {
         downEvent.stopPropagation();

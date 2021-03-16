@@ -86,7 +86,6 @@ export default defineComponent({
   border-bottom: 2px solid #000;
 
   .dialog-header {
-    width: calc(100% -4px);
     transform: translateX(1px);
     line-height: initial;
     text-align: left;
