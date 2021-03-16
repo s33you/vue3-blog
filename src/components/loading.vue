@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="loading">
-      <img src="@/assets/images/NERV_Logo.png" />
-      <img src="@/assets/images/NERV_Logo.png" class="clip" id="loading" />
-      <img src="@/assets/images/NERV_Logo.png" class="shark shark-animation" />
+      <img src="/NERV_Logo.png" />
+      <img src="/NERV_Logo.png" class="clip" id="loading" />
+      <img src="/NERV_Logo.png" class="shark shark-animation" />
     </div>
     <div class="button" v-if="isLoaded">
       <div class="decrator"></div>
