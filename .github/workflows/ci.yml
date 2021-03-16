@@ -13,9 +13,9 @@ jobs:
         with:
           persist-credentials: false
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: /dist
-          BUILD_SCRIPT: npm install && npm run build 
+          branch: gh-pages
+          folder: site
+          token: ${{ secrets.ACCESS_TOKEN }}
+          
