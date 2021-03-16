@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2 
+        uses: actions/checkout@latest
         with:
           persist-credentials: false
       - name: Install and Build
@@ -19,7 +19,7 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} 
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: /dist
-          BUILD_SCRIPT: npm install && npm run build
+          BUILD_SCRIPT: npm install && npm run build 
