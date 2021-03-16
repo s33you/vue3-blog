@@ -1,7 +1,6 @@
 name: Github Actions For  W-95 Blog
 on:
   push:
-   branches:
     -master
 jobs:
   build-blog:
