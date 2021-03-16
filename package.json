@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "blog": "node build/md-loader.js && npm run build"
+    "blog": "node build/md-loader.js"
   },
   "dependencies": {
     "core-js": "^3.9.1",
