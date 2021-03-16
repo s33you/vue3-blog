@@ -1,4 +1,5 @@
 ::: title lottery-app-global
+::: author timebean
 ## /type
 ### Querry.ts
 

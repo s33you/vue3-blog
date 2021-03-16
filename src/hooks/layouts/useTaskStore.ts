@@ -64,8 +64,8 @@ function createTask({ tasks }: TaskState) {
             task.defaultStyle = {
                 width: desktop.clientWidth / 2,
                 height: desktop.clientHeight / 2,
-                left: desktop.clientWidth / 4,
-                top: desktop.clientHeight / 4
+                left: desktop.clientWidth / 4 + tasks.length * 10,
+                top: desktop.clientHeight / 4 + tasks.length * 10
             }
             let index = tasks.push(task)
             TaskStore.actions.selectTask(index - 1)

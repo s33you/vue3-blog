@@ -69,6 +69,7 @@ export default defineComponent({
       default: false,
     },
   },
+  emits:['select','hidden','zoom','close'],
   inject: ["container"],
   setup(props, context) {
     return {...useDialog(props,context)}

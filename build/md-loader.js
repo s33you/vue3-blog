@@ -1,7 +1,8 @@
 const { readFileSync, writeFileSync, readdirSync } = require("fs");
 const { resolve } = require("path");
 const dir = resolve(__dirname, "../");
-const blogPath = resolve(dir, "src/blogs");
+const blogPath = resolve(__dirname,"blogs");
+const outputPath = resolve(dir, "src/blogs");
 const { render } = require("./md-init");
 let mdstr = readdirSync(blogPath, {
   encoding: "utf-8",
@@ -13,7 +14,7 @@ mdstr.forEach((file) => {
       encoding: "utf-8",
     });
     let result = render(markdown);
-    blogs.push(result)
+    blogs.push(result)  
   }
 });
-writeFileSync(resolve(blogPath,'blogs.json'),JSON.stringify(blogs))
+writeFileSync(resolve(outputPath,'blogs.json'),JSON.stringify(blogs))

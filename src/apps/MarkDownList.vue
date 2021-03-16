@@ -1,17 +1,37 @@
 <template>
   <div class="markdown-list">
-    <div v-for="(blog, index) in blogs" :key="index" class="mark_down">
+    <div
+      v-for="(blog, index) in blogs"
+      :key="index"
+      class="mark_down"
+      @dblclick.stop="openBlog(blog)"
+    >
       <img src="@/assets/images/markdown.png" />
-      <div class="title" >{{ blog.title }}</div>
+      <div class="title">{{ blog.title }}</div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import blogs from "@/blogs/blog";
+import blogs, { Blog } from "@/blogs/blog";
+import TaskStore, { Task } from "@/hooks/layouts/useTaskStore";
 export default defineComponent({
   setup() {
-    return { blogs };
+    const { createTask } = TaskStore.actions;
+    const openBlog = (blog: Blog) => {
+        console.log(blog)
+      const task: Task = {
+        title: blog.title,
+        props: {
+          blog: blog.content,
+        },
+        isActive: false,
+        isShow: false,
+        type: "blog",
+      };
+      createTask(task);
+    };
+    return { blogs, openBlog };
   },
 });
 </script>
