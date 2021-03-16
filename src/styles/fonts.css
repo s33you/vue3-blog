@@ -1,9 +1,9 @@
 @font-face {
     font-family: Pxiel;
-    src: url("../assets/fonts/font-pixel.TTF");
+    src: url("../assets/fonts/font-pixel-subfont.ttf");
 }
 
 @font-face {
     font-family: MingChao-Medium;
-    src: url("../assets/fonts/GenWanMinJP-Medium-3.ttf");
+    src: url("../assets/fonts/GenWanMinJP-Medium-3-subfont.ttf");
 }
