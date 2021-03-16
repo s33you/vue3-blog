@@ -34,17 +34,14 @@
   </w-drag>
 </template>
 <script lang="ts">
-import { defineComponent, inject, ref, shallowReactive } from "vue";
+import { defineComponent } from "vue";
 import {useDialog} from '@/hooks/components/useDialog'
 import wDrag from "@/components/w-drag.vue";
-import WMd from "./w-md.vue";
-import MarkDownList from "@/layouts/MarkDownList.vue";
+
 
 export default defineComponent({
   components: {
-    wDrag,
-    WMd,
-    MarkDownList,
+    wDrag
   },
   props: {
     title: {

@@ -1,4 +1,4 @@
-import { onMounted, reactive } from "vue"
+import {  reactive } from "vue"
 import TaskStore from './useTaskStore'
 import { Task } from './useTaskStore'
 const _iconList: Array<Task> = [
@@ -6,20 +6,22 @@ const _iconList: Array<Task> = [
         title: '相册',
         isActive: false,
         isShow: false,
-        img: require('@/assets/images/camera.png')
+        img: require('@/assets/images/camera.png'),
+        type: 'pic-list'
     },
     {
         title: '博客',
         isActive: false,
         isShow: false,
-
+        type: 'blog-list',
         img: require('@/assets/images/blog.png')
     },
     {
         title: '音乐',
         isActive: false,
         isShow: false,
-        img: require('@/assets/images/music.png')
+        img: require('@/assets/images/music.png'),
+        type: 'music-list'
     }
 ]
 

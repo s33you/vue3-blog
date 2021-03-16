@@ -18,5 +18,17 @@
   padding: 0;
   margin: 0;
 }
+@mixin multiline-ellipsis($line: 2, $line-height: 1.6em) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  line-height: $line-height;
+  max-height: $line-height * $line;
+  word-break: break-all;
+}
 $task-bar-height:33px;
 $container-height:calc(100% - #{$task-bar-height});
+
+

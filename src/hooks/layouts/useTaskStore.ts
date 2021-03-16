@@ -1,15 +1,18 @@
-import { onMounted, reactive, watch } from 'vue'
+import { reactive} from 'vue'
 import { Style } from '../components/useDrag'
 /**
  * Interface
  */
-export interface Task {
+export type DialogType = 'blog-list'|'blog'|'music-list'|'pic-list'|'pic'
+ export interface Task {
     title: string,
     defaultStyle?: Style,
     isActive: boolean,
     isShow: boolean,//用于dialog的显示判断
     zIndex?: number,
     img?: string
+    type:DialogType
+    props?:any
 }
 interface TaskState {
     maxIndex: number,
