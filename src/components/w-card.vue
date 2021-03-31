@@ -36,6 +36,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+
 .card {
   .card-header {
     line-height: initial;
@@ -45,4 +46,8 @@ export default defineComponent({
     }
   }
 }
+</style>
+<style lang ="scss" scoped>
+@import "../styles/fonts.css";
+@import "../styles/w95.scss";
 </style>

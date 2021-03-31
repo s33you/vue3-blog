@@ -76,7 +76,12 @@ export default defineComponent({
   },
 });
 </script>
+<style lang ="scss" scoped>
+@import "../styles/fonts.css";
+@import "../styles/w95.scss";
+</style>
 <style lang="scss" scoped>
+
 .w-dialog {
   z-index: 99;
   position: absolute;

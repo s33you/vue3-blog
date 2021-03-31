@@ -15,7 +15,7 @@ export default defineComponent({
   overflow-y: scroll;
 }
 </style>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "/node_modules/highlight.js/scss/stackoverflow-light";
 .md-container {
   * {
