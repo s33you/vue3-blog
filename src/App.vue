@@ -3,7 +3,6 @@
   <router-view v-if="loaded && entered" />
 </template>
 <script lang="ts">
-import '@/styles/fonts.css';
 import { defineComponent} from "vue";
 import useLoading from '@/hooks/components/useLoading'
 import loading from "@/components/loading.vue";
@@ -16,6 +15,10 @@ export default defineComponent({
   }
 });
 </script>
+<style scoped>
+@import './styles/fonts.css';
+
+</style>
 <style lang="scss">
 body,
 html {

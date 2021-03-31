@@ -1,6 +1,6 @@
 <template>
   <button class="btn" type="button" :class="sizeClass">
-    <span class="btn-text test">
+    <span class="btn-text">
       <slot>button</slot>
     </span>
   </button>
@@ -26,6 +26,5 @@ export default defineComponent({
 });
 </script>
 <style lang ="scss" scoped>
-@import "../styles/fonts.css";
 @import "../styles/w95.scss";
 </style>

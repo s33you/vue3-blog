@@ -192,6 +192,8 @@ code {
     .tips {
       margin: 0 rpx(5px);
       font-size: rpx(10px);
+  font-family: Pxiel;
+
     }
 
     .doc-block {

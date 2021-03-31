@@ -48,6 +48,5 @@ export default defineComponent({
 }
 </style>
 <style lang ="scss" scoped>
-@import "../styles/fonts.css";
 @import "../styles/w95.scss";
 </style>
