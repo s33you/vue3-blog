@@ -32,6 +32,7 @@ export default defineComponent({
   }
   .hljs {
     background: rgb(56, 56, 56);
+    line-height: 30px;
   }
   p,
   ol li,

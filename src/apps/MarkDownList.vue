@@ -24,6 +24,7 @@ export default defineComponent({
         props: {
           blog: blog.content,
         },
+        img:require('@/assets/images/markdown.png'),
         isActive: false,
         isShow: false,
         type: "blog",
