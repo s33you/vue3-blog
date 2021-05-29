@@ -29,6 +29,6 @@
   word-break: break-all;
 }
 $task-bar-height:33px;
-$container-height:calc(100% - #{$task-bar-height});
+$container-height:calc(100% - #{$task-bar-height} - 6px);
 
 

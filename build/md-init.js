@@ -49,7 +49,7 @@ function init(markdown, md) {
       if (tokens[idx].nesting === 1) {
         markdown.title = m[1];
         // opening tag
-        return `<h1 style='text-align:center'>${m[1]}</h1>\n`;
+        return `<h2 style='text-align:center'>${m[1]}</h2>\n`;
       } else {
         // closing tag
         return "";
@@ -66,7 +66,7 @@ function init(markdown, md) {
         markdown.date = m[1];
 
         // opening tag
-        return `<span style='text-align:center;color:grey;'>日期：</span><span style='text-align:center;color:grey;'>${m[1]}</span>\t|\n`;
+        return `<span style='text-align:center;color:grey;'>日期：</span><span style='text-align:center;color:grey;'>${m[1]}</span>\t\n`;
       } else {
         // closing tag
         return "";
@@ -84,6 +84,23 @@ function init(markdown, md) {
 
         // opening tag
         return `<span style='text-align:center;color:grey;'>作者：</span><span style='text-align:center;color:grey;'>${m[1]}</span>\n`;
+      } else {
+        // closing tag
+        return "";
+      }
+    },
+  });
+  md.use(mkdc, "div", {
+    validate: function(params) {
+      return params.trim().match(/^div\s+(.*)$/);
+    },
+    render: function(tokens, idx) {
+      var m = tokens[idx].info.trim().match(/^div\s+(.*)$/);
+      if (tokens[idx].nesting === 1) {
+        markdown.author = m[1];
+
+        // opening tag
+        return `<div>${m[1]}</div>\n`;
       } else {
         // closing tag
         return "";

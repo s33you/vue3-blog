@@ -127,10 +127,10 @@ export function handlePointMouseDown(this: any, mark: string, downEvent: MouseEv
         /**
          * 对值做出限定，从而限定布局
          */
-        ele["height"] = limitInArea(minBox.height, container.height -20, newHeight)
-        ele["width"] = limitInArea(minBox.width, container.width-20, newWidth)
-        ele["left"] = limitInArea(0, container.width - ele['width']-20, left + (hasW ? disX : 0))
-        ele["top"] = limitInArea(0, container.height - ele['height']-20, top + (hasN ? disY : 0))
+        ele["height"] = limitInArea(minBox.height, container.height-4 , newHeight)
+        ele["width"] = limitInArea(minBox.width, container.width-4, newWidth)
+        ele["left"] = limitInArea(0, container.width - ele['width'] +2, left + (hasW ? disX : 0))
+        ele["top"] = limitInArea(0, container.height - ele['height']-2, top + (hasN ? disY : 0))
     };
     let up = () => {
         this.$emit('resize')

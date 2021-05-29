@@ -12,6 +12,7 @@ export default defineComponent({
   padding: 20px;
   width: calc(100% - 40px);
   height: calc(100% - 40px);
+  text-align: left;
   overflow-y: scroll;
 }
 </style>

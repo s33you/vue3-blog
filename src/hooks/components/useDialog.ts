@@ -27,10 +27,10 @@ export function useDialog(props: { defaultStyle: any; }, context: { emit: any; }
             let left = currX - startX + startLeft;
             if (container) {
                 if (top < 0 || top + ele.height > container.height - 10) {
-                    top = top < 0 ? 0 : container.height - ele.height - 10;
+                    top = top < 0 ? 0 : container.height - ele.height;
                 }
                 if (left < 0 || left + ele.width > container.width - 10) {
-                    left = left < 0 ? 0 : container.width - ele.width - 10;
+                    left = left < 0 ? 0 : container.width - ele.width - 4;
                 }
             }
             defaultStyle.top = top;
@@ -55,14 +55,20 @@ export function useDialog(props: { defaultStyle: any; }, context: { emit: any; }
     const handleClose = () => {
         emit("close");
     };
+    /**
+     * 选择对话框
+     */
     const selectDialog = () => {
         emit("select");
     };
+    /**
+     * 放大
+     */
     const handleZoom = () => {
-        defaultStyle.width = container.width -20
-        defaultStyle.height = container.height -30
-        defaultStyle.top = 10
-        defaultStyle.left = 10
+        defaultStyle.width = container.width - 4
+        defaultStyle.height = container.height -4
+        defaultStyle.top = 0
+        defaultStyle.left = 0
         emit('zoom')
     }
     return {
