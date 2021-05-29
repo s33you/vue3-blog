@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath:'/vue3-blog/',
   css: {
     sourceMap: false,
     loaderOptions: {
