@@ -16,15 +16,22 @@ export default defineComponent({
   overflow-y: scroll;
 }
 </style>
-<style lang="scss" scoped>
-@import "/node_modules/highlight.js/scss/stackoverflow-light";
+<style lang="scss" >
 .md-container {
+  font-family: none;
   * {
     font-family: Arial, Helvetica, sans-serif;
     text-align: left;
   }
+  code{
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 13px;
+    background: rgb(218, 215, 215);
+    
+  }
   .hljs {
-    background: rgba(3, 56, 52, 0.192);
+    background: rgb(56, 56, 56);
   }
   p,
   ol li,

@@ -25,7 +25,7 @@ function highlight(str, lang) {
       .join("");
     // 添加代码语言
     return `<pre class="hljs"><code><span class="name"> ${
-      lang ? "lang:" + lang : "lang:normal"
+      lang ? "lang:" + lang : ""
     }</span><ol>${html}</ol></code></pre>`;
   } catch (e) {}
 }
