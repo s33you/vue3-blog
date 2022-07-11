@@ -1,6 +1,7 @@
 const MarkdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 const mkdc = require("markdown-it-container");
+const moment = require('moment')
 /**
  * highlight 函数
  */
@@ -64,9 +65,12 @@ function init(markdown, md) {
       var m = tokens[idx].info.trim().match(/^date\s+(.*)$/);
       if (tokens[idx].nesting === 1) {
         markdown.date = m[1];
-
+        const style = "text-align:center;color:grey;margin-right:10px;"
+        const span = (label,value)=>{
+          return `<span style=${style}>${label}</span><span style=${style}>${value}</span>`
+        }
         // opening tag
-        return `<span style='text-align:center;color:grey;'>日期：</span><span style='text-align:center;color:grey;'>${m[1]}</span>\t\n`;
+        return span("日期：",m[1])  + span("最后修改时间：",moment().format('yyyy-MM-DD HH:MM:SS'));
       } else {
         // closing tag
         return "";
@@ -83,7 +87,7 @@ function init(markdown, md) {
         markdown.author = m[1];
 
         // opening tag
-        return `<span style='text-align:center;color:grey;'>作者：</span><span style='text-align:center;color:grey;'>${m[1]}</span>\n`;
+        return `<span style='text-align:center;'>作者：</span><span style='text-align:center;'>${m[1]}</span>\n<br></br>`;
       } else {
         // closing tag
         return "";
