@@ -27,7 +27,6 @@ export default defineComponent({
     padding: 2px 4px;
     border-radius: 4px;
     font-size: 13px;
-    background: rgb(218, 215, 215);
     
   }
   .hljs {

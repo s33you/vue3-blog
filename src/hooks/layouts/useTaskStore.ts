@@ -61,7 +61,7 @@ function createTask({ tasks }: TaskState) {
              * 重置默认样式
              */
             const desktop = document.querySelector("#desktop") as HTMLElement;
-            task.defaultStyle = {
+            task.defaultStyle = task.defaultStyle || {
                 width: desktop.clientWidth / 2,
                 height: desktop.clientHeight / 2,
                 left: desktop.clientWidth / 4 + tasks.length * 10,

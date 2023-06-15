@@ -1,6 +1,8 @@
 import {  reactive } from "vue"
 import TaskStore from './useTaskStore'
 import { Task } from './useTaskStore'
+
+
 const _iconList: Array<Task> = [
     {
         title: '相册',
@@ -21,7 +23,13 @@ const _iconList: Array<Task> = [
         isActive: false,
         isShow: false,
         img: require('@/assets/images/music.png'),
-        type: 'music-list'
+        type: 'music-list',
+        defaultStyle:{
+            width:340,
+            height: 600,
+            left: 40 ,
+            top:40
+        }
     }
 ]
 

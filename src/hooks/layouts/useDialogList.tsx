@@ -4,6 +4,7 @@
 import MarkDownList from "@/apps/MarkDownList.vue";
 import WMd from "@/components/w-md.vue";
 import WDialog from "@/components/w-dialog.vue";
+import MusicPlayer from "@/apps/MusicPlayer.vue";
 const type2ElementMap = new Map<DialogType, Function>();
 
 type2ElementMap.set("blog-list", (task: Task) => {
@@ -11,6 +12,10 @@ type2ElementMap.set("blog-list", (task: Task) => {
 });
 type2ElementMap.set("blog", (task: Task) => {
   return <WMd blog={task.props.blog}></WMd>;
+});
+
+type2ElementMap.set("music-list", (task:Task)=>{
+  return <MusicPlayer></MusicPlayer>;
 });
 /**
  * 渲染部分

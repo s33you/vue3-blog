@@ -88,7 +88,7 @@ export default defineComponent({
   border-left: 2px solid #efefef;
   border-right: 2px solid #000;
   border-bottom: 2px solid #000;
-
+  overflow: hidden;
   .dialog-header {
     transform: translateX(1px);
     line-height: initial;
