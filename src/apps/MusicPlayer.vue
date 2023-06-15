@@ -93,9 +93,8 @@ $secondary-color: #f44336;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  margin: 20px auto;
-  border-radius: 10px;
+  width: 100%;
+  height: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background-color: #fff;
   overflow: hidden;
@@ -105,7 +104,6 @@ $secondary-color: #f44336;
     height: 200px;
     overflow: hidden;
     position: relative;
-
     img {
       width: 100%;
       height: 100%;

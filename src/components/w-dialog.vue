@@ -88,7 +88,6 @@ export default defineComponent({
   border-left: 2px solid #efefef;
   border-right: 2px solid #000;
   border-bottom: 2px solid #000;
-  overflow: hidden;
   .dialog-header {
     transform: translateX(1px);
     line-height: initial;
@@ -111,6 +110,7 @@ export default defineComponent({
     border-top: 2px solid #404040;
     border-right: 2px solid #f4f4f4;
     border-bottom: 2px solid #f4f4f4;
+    overflow: hidden;
   }
   .icon-button {
     float: right;
