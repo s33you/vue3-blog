@@ -1,13 +1,13 @@
 @function rpx($value, $design-width: 750px) {
   @if type-of($value) == "number" and unit($value) == "px" {
-    @return $value * 100vw / $design-width;
+    @return $value * calc(100vw / $design-width);
   } @else {
     @return $value;
   }
 }
 @function vpx($value, $design-width: 1334px) {
   @if type-of($value) == "number" and unit($value) == "px" {
-    @return $value * 100vh / $design-width;
+    @return $value * calc(100vh / $design-width);
   } @else {
     @return $value;
   }
