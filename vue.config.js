@@ -1,3 +1,4 @@
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 module.exports = {
   publicPath:'/vue3-blog/',
   css: {
@@ -8,4 +9,7 @@ module.exports = {
       }
     },
   },
+  configureWebpack:{
+    plugins: [new NodePolyfillPlugin()]
+  }
 };
