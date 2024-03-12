@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.9.1",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "sass": "^1.53.0",
@@ -17,15 +18,23 @@
     "vue-router": "^4.0.5"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "@types/node": "^14.14.35",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
     "@vue/cli-plugin-babel": "^5.0.6",
     "@vue/cli-plugin-router": "^5.0.6",
     "@vue/cli-plugin-typescript": "^5.0.6",
     "@vue/cli-service": "^5.0.6",
     "@vue/compiler-sfc": "^3.0.7",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.15.1",
     "highlight.js": "^10.6.0",
     "markdown-it": "^12.0.4",
     "markdown-it-container": "^3.0.0",
+    "prettier": "^2.8.8",
     "sass-loader": "^8.0.2"
   },
   "homepage": "https://github.com/s33you/vue3-blog",
