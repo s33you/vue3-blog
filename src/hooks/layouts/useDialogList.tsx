@@ -35,6 +35,7 @@ const DialogList = () => {
         onSelect={() => {
           selectTask(index);
         }}
+        id={`dialog-${task.id}`}
         isActive={task.isActive}
         onHidden={() => {
           hiddenTask(index);
